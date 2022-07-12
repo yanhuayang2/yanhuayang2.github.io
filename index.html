@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -149,6 +149,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/12/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-WinSock2%E5%AE%8C%E6%88%90%E5%B1%8F%E5%B9%95%E7%9B%91%E6%8E%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HY Yan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LE PARADIS">
+      <meta itemprop="description" content="这个人很懒，没留下什么">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | LE PARADIS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-WinSock2%E5%AE%8C%E6%88%90%E5%B1%8F%E5%B9%95%E7%9B%91%E6%8E%A7/" class="post-title-link" itemprop="url">网络编程 WinSock2完成屏幕监控</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-12 17:38:48 / Modified: 18:18:04" itemprop="dateCreated datePublished" datetime="2022-07-12T17:38:48+08:00">2022-07-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本文章通过WinSock2库完成服务器端对客户端的实时屏幕获取。</p>
+<p>主要思路就是通过TCP网络连接，客户端实时抓取屏幕保存在本地并发送给服务器端。</p>
+<h2 id="一、程序测试："><a href="#一、程序测试：" class="headerlink" title="一、程序测试："></a>一、程序测试：</h2><p>仅在本机回环地址127.0.0.1测试。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/c0c5cf1712c92fa840092d869d8fc5ecd999e123.png"></p>
+<p>被监控端打开client.exe（看不到反应，因为隐藏了窗口，但程序已经运行）。</p>
+<p>之后监控端打开service.exe程序。</p>
+<img src="https://i0.hdslb.com/bfs/album/6d5c2e943307670d858af8cacecdab2ae5263dc2.png" style="zoom: 25%;" />
+
+<p>会出现一个窗口，窗口内就是被监控端的电脑屏幕（这里直接是我本机画面），按空格键停止监控，client还在后台运行，用任务管理器关闭。</p>
+<img src="https://i0.hdslb.com/bfs/album/463b3302a856960345a95e5a74ad5d7923bfcb11.png" style="zoom:50%;" />
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/12/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-WinSock2%E5%AE%8C%E6%88%90%E5%B1%8F%E5%B9%95%E7%9B%91%E6%8E%A7/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
