@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络编程 WinSock2完成屏幕监控">
 <meta property="og:url" content="http://example.com/2022/07/12/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-WinSock2%E5%AE%8C%E6%88%90%E5%B1%8F%E5%B9%95%E7%9B%91%E6%8E%A7/index.html">
-<meta property="og:site_name" content="LE PARADIS">
+<meta property="og:site_name" content="Huayang Yan&#39;s Blog">
 <meta property="og:description" content="本文章通过WinSock2库完成服务器端对客户端的实时屏幕获取。 主要思路就是通过TCP网络连接，客户端实时抓取屏幕保存在本地并发送给服务器端。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i0.hdslb.com/bfs/album/c0c5cf1712c92fa840092d869d8fc5ecd999e123.png">
@@ -38,8 +38,10 @@
 <meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/c0c5cf1712c92fa840092d869d8fc5ecd999e123.png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>网络编程 WinSock2完成屏幕监控 - LE PARADIS</title>
+  
+  <title>网络编程 WinSock2完成屏幕监控 - Huayang Yan&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -103,7 +105,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Huayang Yan&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -176,6 +178,46 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    <span>test1</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    <span>test2</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -213,6 +255,11 @@
           
   <div class="mt-3">
     
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        HY Yan
+      </span>
+    
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
@@ -245,6 +292,14 @@
     
 
     
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
     
   </div>
 
@@ -653,6 +708,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
