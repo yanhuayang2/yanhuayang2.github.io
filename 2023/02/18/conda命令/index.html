@@ -16,25 +16,23 @@
   <meta name="author" content="HY Yan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2020 Access ——关于SDN架构和API的内容 基于机器学习的灵活的SDN架构用于识别和缓解低速率DDoS攻击 J48、随机树、REP树、随机森林、多层感知器MLP、支持向量机SVM IDS能够区分异常流量和正常流量，并确定正在进行的LR - DDoS攻击类型。 一般来说，LR - DDoS是由多个源促成的，例如每个流的F1，F2，· · ·，Fn。如果每个流Fi的Ta、T">
+    <meta name="description" content="1、conda 初始化 1conda init 2、conda 创建虚拟环境 1conda create -n your_env_name python&#x3D;3.7 3、conda 列出所有虚拟环境 1conda env list 4、conda 删除虚拟环境 1conda env remove --name your_env_name 5、conda激活虚拟环境 1conda ac">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于ML的灵活的SDN架构">
-<meta property="og:url" content="http://example.com/2023/02/15/%E5%9F%BA%E4%BA%8EML%E7%9A%84%E7%81%B5%E6%B4%BB%E7%9A%84SDN%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:title" content="conda命令">
+<meta property="og:url" content="http://example.com/2023/02/18/conda%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Huayang Yan&#39;s Blog">
-<meta property="og:description" content="2020 Access ——关于SDN架构和API的内容 基于机器学习的灵活的SDN架构用于识别和缓解低速率DDoS攻击 J48、随机树、REP树、随机森林、多层感知器MLP、支持向量机SVM IDS能够区分异常流量和正常流量，并确定正在进行的LR - DDoS攻击类型。 一般来说，LR - DDoS是由多个源促成的，例如每个流的F1，F2，· · ·，Fn。如果每个流Fi的Ta、T">
+<meta property="og:description" content="1、conda 初始化 1conda init 2、conda 创建虚拟环境 1conda create -n your_env_name python&#x3D;3.7 3、conda 列出所有虚拟环境 1conda env list 4、conda 删除虚拟环境 1conda env remove --name your_env_name 5、conda激活虚拟环境 1conda ac">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-15T06:19:48.000Z">
-<meta property="article:modified_time" content="2023-02-15T06:29:09.567Z">
+<meta property="article:published_time" content="2023-02-18T03:42:48.000Z">
+<meta property="article:modified_time" content="2023-02-18T03:46:06.431Z">
 <meta property="article:author" content="HY Yan">
-<meta property="article:tag" content="ML">
-<meta property="article:tag" content="DDoS">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>基于ML的灵活的SDN架构 - Huayang Yan&#39;s Blog</title>
+  <title>conda命令 - Huayang Yan&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于ML的灵活的SDN架构"></span>
+            <span id="subtitle" data-typed-text="conda命令"></span>
           
         </div>
 
@@ -256,8 +254,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-15 14:19" pubdate>
-          2023年2月15日 下午
+        <time datetime="2023-02-18 11:42" pubdate>
+          2023年2月18日 中午
         </time>
       </span>
     
@@ -268,7 +266,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          553 字
+          185 字
         
       </span>
     
@@ -279,7 +277,7 @@
         
         
         
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -325,34 +323,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">基于ML的灵活的SDN架构</h1>
+            <h1 style="display: none">conda命令</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="access-关于sdn架构和api的内容">2020 Access
-——关于SDN架构和API的内容</h1>
-<h2
-id="基于机器学习的灵活的sdn架构用于识别和缓解低速率ddos攻击">基于机器学习的灵活的SDN架构用于识别和缓解低速率DDoS攻击</h2>
-<h3
-id="j48随机树rep树随机森林多层感知器mlp支持向量机svm">J48、随机树、REP树、随机森林、多层感知器MLP、支持向量机SVM</h3>
-<h3
-id="ids能够区分异常流量和正常流量并确定正在进行的lr---ddos攻击类型">IDS能够区分异常流量和正常流量，并确定正在进行的LR
-- DDoS攻击类型。</h3>
-<p>一般来说，LR - DDoS是由多个源促成的，例如每个流的F1，F2，· ·
-·，Fn。如果每个流Fi的Ta、Tb、Rb相等，则攻击定义为群流(一组具有相同目标和特征的攻击)。组合组流(每种攻击的不同参数)可以实现更多的破坏性攻击。Zhang等[
-19 ]对LR - DDoS攻击进行了分类： 攻击频次强化( AFI
-)。分布式攻击具有相同的参数但启动时间不同。因此，攻击具有较高的频率。
-攻击爆发宽度强化( AWI
-)。一个攻击爆发紧接着是另一个攻击爆发。因此，总的攻击爆发被强化n次。
-攻击爆发率强化( ARI )。如果两个或多个流同时启动，则聚合每个流的突发率(
-Rb )。 混合强化( MI )。先前攻击类型类别的复杂组合。</p>
-<p>（实际上和单源的攻击差不了多少，分布式攻击较单源攻击更难以防御）</p>
-<h3 id="后面介绍框架算法实验">后面介绍框架、算法、实验</h3>
-<p>主要针对的是http协议拒绝服务攻击
-slowbody、slowheads、slowloris、slowread等</p>
-<p>用CIC DoS 2019数据集</p>
-<p>还有机器学习算法中的参数优化内容</p>
+                <h2 id="conda-初始化">1、conda 初始化</h2>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">conda <span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure>
+<h2 id="conda-创建虚拟环境">2、conda 创建虚拟环境</h2>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">conda</span> create -n your_env_name python=<span class="hljs-number">3</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+<h2 id="conda-列出所有虚拟环境">3、conda 列出所有虚拟环境</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda <span class="hljs-built_in">env</span> list<br></code></pre></td></tr></table></figure>
+<h2 id="conda-删除虚拟环境">4、conda 删除虚拟环境</h2>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">conda env <span class="hljs-built_in">remove</span> <span class="hljs-comment">--name your_env_name</span><br></code></pre></td></tr></table></figure>
+<h2 id="conda激活虚拟环境">5、conda激活虚拟环境</h2>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">activate</span> your_env_name<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -362,15 +347,6 @@ slowbody、slowheads、slowloris、slowread等</p>
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/ML/">#ML</a>
-      
-        <a href="/tags/DDoS/">#DDoS</a>
-      
-    </div>
-  
 </div>
 
 
@@ -379,8 +355,8 @@ slowbody、slowheads、slowloris、slowread等</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于ML的灵活的SDN架构</div>
-      <div>http://example.com/2023/02/15/基于ML的灵活的SDN架构/</div>
+      <div>conda命令</div>
+      <div>http://example.com/2023/02/18/conda命令/</div>
     </div>
     <div class="license-meta">
       
@@ -392,7 +368,7 @@ slowbody、slowheads、slowloris、slowread等</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月15日</div>
+          <div>2023年2月18日</div>
         </div>
       
       
@@ -424,18 +400,12 @@ slowbody、slowheads、slowloris、slowread等</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/18/conda%E5%91%BD%E4%BB%A4/" title="conda命令">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">conda命令</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/15/LSTM-GAN-%E5%9F%BA%E4%BA%8E%E7%AE%80%E5%8D%95%E7%BB%9F%E8%AE%A1%E7%89%B9%E5%BE%81%E7%9A%84LDoS%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B/" title="(LSTM+GAN)基于简单统计特征的LDoS攻击检测">
-                        <span class="hidden-mobile">(LSTM+GAN)基于简单统计特征的LDoS攻击检测</span>
+                      <a href="/2023/02/15/%E5%9F%BA%E4%BA%8EML%E7%9A%84%E7%81%B5%E6%B4%BB%E7%9A%84SDN%E6%9E%B6%E6%9E%84/" title="基于ML的灵活的SDN架构">
+                        <span class="hidden-mobile">基于ML的灵活的SDN架构</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>conda命令</title>
+    <link href="/2023/02/18/conda%E5%91%BD%E4%BB%A4/"/>
+    <url>/2023/02/18/conda%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h2 id="conda-初始化">1、conda 初始化</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">conda <span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure><h2 id="conda-创建虚拟环境">2、conda 创建虚拟环境</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">conda</span> create -n your_env_name python=<span class="hljs-number">3</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure><h2 id="conda-列出所有虚拟环境">3、conda 列出所有虚拟环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda <span class="hljs-built_in">env</span> list<br></code></pre></td></tr></table></figure><h2 id="conda-删除虚拟环境">4、conda 删除虚拟环境</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">conda env <span class="hljs-built_in">remove</span> <span class="hljs-comment">--name your_env_name</span><br></code></pre></td></tr></table></figure><h2 id="conda激活虚拟环境">5、conda激活虚拟环境</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">activate</span> your_env_name<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>基于ML的灵活的SDN架构</title>
     <link href="/2023/02/15/%E5%9F%BA%E4%BA%8EML%E7%9A%84%E7%81%B5%E6%B4%BB%E7%9A%84SDN%E6%9E%B6%E6%9E%84/"/>
     <url>/2023/02/15/%E5%9F%BA%E4%BA%8EML%E7%9A%84%E7%81%B5%E6%B4%BB%E7%9A%84SDN%E6%9E%B6%E6%9E%84/</url>
