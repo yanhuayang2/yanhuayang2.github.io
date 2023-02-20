@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="HY Yan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="结构型模式 1.适配器模式 将一个类的接口转换成客户希望的另外一个接口，适配器使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。实现适配器的两种方式，类适配器使用多继承，对象适配器使用组合。组合就是一个类中放入另一类的对象。 角色：目标接口、待适配的类、适配器 适用场景：想使用一个已经存在的类，而接口不符合要求；想使用一些已经存在的类，但是不可能对每一个都进行子类化以匹配它们的接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式（三）：结构型模式">
+<meta property="og:url" content="http://example.com/2023/02/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Huayang Yan&#39;s Blog">
+<meta property="og:description" content="结构型模式 1.适配器模式 将一个类的接口转换成客户希望的另外一个接口，适配器使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。实现适配器的两种方式，类适配器使用多继承，对象适配器使用组合。组合就是一个类中放入另一类的对象。 角色：目标接口、待适配的类、适配器 适用场景：想使用一个已经存在的类，而接口不符合要求；想使用一些已经存在的类，但是不可能对每一个都进行子类化以匹配它们的接口">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-18T16:14:51.000Z">
+<meta property="article:modified_time" content="2023-02-20T08:16:57.955Z">
+<meta property="article:author" content="HY Yan">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>设计模式（三）：结构型模式 - Huayang Yan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Huayang Yan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    <span>test1</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    <span>test2</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="设计模式（三）：结构型模式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        HY Yan
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-19 00:14" pubdate>
+          2023年2月19日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">设计模式（三）：结构型模式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="结构型模式">结构型模式</h2>
+<h3 id="适配器模式">1.适配器模式</h3>
+<p>将一个类的接口转换成客户希望的另外一个接口，适配器使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<strong>实现适配器的两种方式，类适配器使用多继承，对象适配器使用组合。组合就是一个类中放入另一类的对象。</strong>
+角色：目标接口、待适配的类、适配器
+适用场景：想使用一个已经存在的类，而接口不符合要求；想使用一些已经存在的类，但是不可能对每一个都进行子类化以匹配它们的接口。对象适配器可以适配它的父类接口。</p>
+<p>类适配器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 类适配器模式使用示例：</span><br><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-comment"># 目标接口</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Payment</span>(<span class="hljs-built_in">object</span>, metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">pay</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Alipay</span>(<span class="hljs-title class_ inherited__">Payment</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">pay</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;支付了%d&#x27;</span> % money)<br><br><span class="hljs-comment"># 待适配的类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BankPay</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">cost</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;银联支付了%d&#x27;</span> % money)<br><br><span class="hljs-comment"># 类适配器</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">PaymentAdapter</span>(Payment, BankPay):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    把不兼容cost转换成pay</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">pay</span>(<span class="hljs-params">self, money</span>):<br>        self.cost(money)<br><br>p = PaymentAdapter()<br>p.pay(<span class="hljs-number">100</span>)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">银联支付了100</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<p>对象适配器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>:<br>	<span class="hljs-keyword">pass</span><br>	<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>:<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>():<br>		self.a = A()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 对象适配器模式使用示例：</span><br><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-comment"># 目标接口</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Payment</span>(<span class="hljs-built_in">object</span>, metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">pay</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Alipay</span>(<span class="hljs-title class_ inherited__">Payment</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">pay</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;支付了%d&#x27;</span> % money)<br><br><span class="hljs-comment"># 待适配的类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BankPay</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">cost</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;银联支付了%d&#x27;</span> % money)<br><br><span class="hljs-comment"># 待适配的类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ApplePay</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">cost</span>(<span class="hljs-params">self, money</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;苹果支付了%d&#x27;</span> % money)<br><br><span class="hljs-comment"># 对象适配器</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">PaymentAdapter</span>(<span class="hljs-title class_ inherited__">Payment</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, payment</span>):<br>        self.payment = payment<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">pay</span>(<span class="hljs-params">self, money</span>):<br>        self.payment.cost(money)<br><br>p = PaymentAdapter(ApplePay())<br>p.pay(<span class="hljs-number">100</span>)<br>p = PaymentAdapter(BankPay())<br>p.pay(<span class="hljs-number">100</span>)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">苹果支付了100</span><br><span class="hljs-string">银联支付了100</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="桥模式">2.桥模式</h3>
+<p>将一个事物的两个维度分离，使其都可以独立地变化。解耦合方便进行维度的扩展。
+角色有抽象、细化抽象、实现者和具体实现者
+例：形状和颜色的抽象类连接在一起，但具体颜色和形状可以分离。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-comment"># 抽象</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span>(metaclass=ABCMeta):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, color</span>):<br>        self.color = color<span class="hljs-comment">#颜色作为形状的属性</span><br><br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-comment"># 实现</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Color</span>(metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">paint</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-comment"># 细化抽象</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Rectangle</span>(<span class="hljs-title class_ inherited__">Shape</span>):<br>    name = <span class="hljs-string">&#x27;长方形&#x27;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        self.color.paint(self)<br><br><span class="hljs-comment"># 如果要扩展形状，只需要添加形状类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span>(<span class="hljs-title class_ inherited__">Shape</span>):<br>    name = <span class="hljs-string">&#x27;圆形&#x27;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        self.color.paint(self)<br><br><span class="hljs-comment"># 细化实现</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Red</span>(<span class="hljs-title class_ inherited__">Color</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">paint</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;画红色的%s&#x27;</span> % shape.name)<br><br><span class="hljs-comment"># 如果要扩展颜色，只需要添加颜色类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Green</span>(<span class="hljs-title class_ inherited__">Color</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">paint</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;画绿色的%s&#x27;</span> % shape.name)<br><br>rectangle = Rectangle(Red())<br>rectangle.draw()<br>circle = Circle(Green())<br>circle.draw()<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">画红色的长方形</span><br><span class="hljs-string">画绿色的圆形</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="组合模式">3.组合模式</h3>
+<p>将对象组合成<strong>树形结构</strong>以表示“<strong>部分-整体</strong>”的层次结构(特别是结构是递归的)，组合模式使得用户对单个对象和组合对象的使用具有一致性。
+适用场景：表示对象的“部分-整体“层次结构（特别是递归结构）；希望用户忽略组合对象与单个对象的不同，用户统一地使用组合结构中的所有对象
+优点是定义了包含基本对象和组合对象的层次结构；简化客户端代码，客户端可以一致地使用组合对象和单个对象；更加容易增加新类型的组件。
+角色有抽象组件、叶子组件、复合组件、客户端 例：个体组成整体</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-comment"># 抽象组件：提供统一的接口</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Graphic</span>(metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-comment"># 叶子组件</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span>(<span class="hljs-title class_ inherited__">Graphic</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, x, y</span>):<br>        self.x = x<br>        self.y = y<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__str__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;点(%s,%s)&#x27;</span> % (self.x, self.y)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(self)<br><br><span class="hljs-comment"># 叶子组件</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Line</span>(<span class="hljs-title class_ inherited__">Graphic</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, p1, p2</span>):<br>        self.p1 = p1<br>        self.p2 = p2<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__str__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;线段[(%s,%s)]&#x27;</span> % (self.p1, self.p2)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(self)<br><br><span class="hljs-comment"># 复合组件</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Picture</span>(<span class="hljs-title class_ inherited__">Graphic</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, iterable</span>):<br>        self.children = []<br>        <span class="hljs-keyword">for</span> g <span class="hljs-keyword">in</span> iterable:<br>            self.add(g)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">self, graphic</span>):<br>        self.children.append(graphic)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">for</span> g <span class="hljs-keyword">in</span> self.children:<br>            g.draw()<br><br><span class="hljs-comment"># 简单图形</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;------简单图形------&#x27;</span>)<br>p = Point(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>l1 = Line(Point(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), Point(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))<br>l2 = Line(Point(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>), Point(<span class="hljs-number">7</span>, <span class="hljs-number">8</span>))<br><span class="hljs-built_in">print</span>(p)<br><span class="hljs-built_in">print</span>(l1)<br><span class="hljs-built_in">print</span>(l2)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;------复合图形(p,l1,l2)------&#x27;</span>)<br><span class="hljs-comment"># 复合图形</span><br>pic = Picture([p, l1, l2])<br>pic.draw()<br></code></pre></td></tr></table></figure>
+<h3 id="外观模式">4.外观模式</h3>
+<p>内容：外观模式为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层的接口，这个接口使得这一子系统更加容易使用。</p>
+<p>外观模式下的角色有外观和子系统类</p>
+<p>优点是：减少系统相互依赖，提高灵活性，提高了安全性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 子系统类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CPU</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;CPU start to run...&#x27;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;CPU stop to run...&#x27;</span>)<br><br><span class="hljs-comment"># 子系统类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Disk</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Disk start to run...&#x27;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Disk stop to run...&#x27;</span>)<br><br><span class="hljs-comment"># 子系统类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Memory</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Memory start to run...&#x27;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Memory stop to run...&#x27;</span>)<br><br><span class="hljs-comment"># 外观</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Computer</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        self.CPU = CPU()<br>        self.Disc = Disk()<br>        self.Member = Memory()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        self.CPU.run()<br>        self.Disc.run()<br>        self.Member.run()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>(<span class="hljs-params">self</span>):<br>        self.CPU.stop()<br>        self.Disc.stop()<br>        self.Member.stop()<br><br><span class="hljs-comment"># 客户端，高层代码</span><br>c = Computer()<br>c.run()<br>c.stop()<br></code></pre></td></tr></table></figure>
+<h3 id="代理模式">5.代理模式</h3>
+<p>内容：为其它对象提供一种代理以控制对这个对象的访问。</p>
+<p>角色：抽象实体、实体和代理。</p>
+<p>应用场景有远程代理：</p>
+<ul>
+<li>远程代理：隐藏对象位于远程地址空间的事实，为远程的对象提供代理（通过ORM向数据库写值，不用关注数据库是在远程）；</li>
+<li>虚代理：根据需要创建很大的对象（需要的时候创建对象，无图模式），可以进行优化；</li>
+<li>保护代理：控制对原始对象的访问，用于对象有不同的访问权限，访问时可以有一些附加内务处理。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#不使用虚代理</span><br><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span>(metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RealSubject</span>(<span class="hljs-title class_ inherited__">Subject</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, filename</span>):<br>        self.filename = filename<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;读取文件内容！&#x27;</span>)<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(self.filename, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            self.content = f.read()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> self.content<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(self.filename, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            f.write(content)<br><br>subj = RealSubject(<span class="hljs-string">&#x27;test.txt&#x27;</span>)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">读取文件内容！</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用虚代理</span><br><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span>(metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RealSubject</span>(<span class="hljs-title class_ inherited__">Subject</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, filename</span>):<br>        self.filename = filename<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;读取文件内容！&#x27;</span>)<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(self.filename, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            self.content = f.read()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> self.content<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(self.filename, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            f.write(content)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">VirtualProxy</span>(<span class="hljs-title class_ inherited__">Subject</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, filename</span>):<br>        self.filename = filename<br>        self.subj = <span class="hljs-literal">None</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.subj:<br>            self.subj = RealSubject(self.filename)<br>        <span class="hljs-keyword">return</span> self.subj.get_content()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.subj:<br>            self.subj = RealSubject(self.filename)<br><br>        <span class="hljs-keyword">return</span> self.subj.set_content(content)<br><br>subj = VirtualProxy(<span class="hljs-string">&#x27;test.txt&#x27;</span>)<br><span class="hljs-built_in">print</span>(subj.get_content())<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">读取文件内容！</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<p>不使用虚代理，只要是实例化 RealSubject
+类，就会读取这个文件占用内存。使用虚代理后，可以和根据需要创建对象，用户不调用是不会创建
+RealSubject 对象的，节省了内存的开销。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#保护代理</span><br><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span>(metaclass=ABCMeta):<br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-meta">    @abstractmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">pass</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RealSubject</span>(<span class="hljs-title class_ inherited__">Subject</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, filename</span>):<br>        self.filename = filename<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;读取文件内容！&#x27;</span>)<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(self.filename, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            self.content = f.read()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> self.content<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(self.filename, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            f.write(content)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ProtectedSubject</span>(<span class="hljs-title class_ inherited__">Subject</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, filename</span>):<br>        self.subj = RealSubject(filename)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_content</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> self.subj.get_content()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_content</span>(<span class="hljs-params">self, content</span>):<br>        <span class="hljs-keyword">raise</span> PermissionError(<span class="hljs-string">&#x27;无写入权限！&#x27;</span>)<br><br>subj = ProtectedSubject(<span class="hljs-string">&#x27;test.txt&#x27;</span>)<br><span class="hljs-built_in">print</span>(subj.get_content())<br>subj.set_content(<span class="hljs-string">&#x27;abc&#x27;</span>)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">读取文件内容！</span><br><span class="hljs-string">test file!</span><br><span class="hljs-string">Traceback (most recent call last):</span><br><span class="hljs-string">  File &quot;/home/thanlon/projects/PycharmProjects/untitled/代理模式.py&quot;, line 42, in &lt;module&gt;</span><br><span class="hljs-string">    subj.set_content(&#x27;abc&#x27;)</span><br><span class="hljs-string">  File &quot;/home/thanlon/projects/PycharmProjects/untitled/代理模式.py&quot;, line 37, in set_content</span><br><span class="hljs-string">    raise PermissionError(&#x27;无写入权限！&#x27;)</span><br><span class="hljs-string">PermissionError: 无写入权限！</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>设计模式（三）：结构型模式</div>
+      <div>http://example.com/2023/02/19/设计模式（三）：结构型模式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>HY Yan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" title="设计模式（四）：行为型模式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">设计模式（四）：行为型模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/" title="设计模式（二）：创造型模式">
+                        <span class="hidden-mobile">设计模式（二）：创造型模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
